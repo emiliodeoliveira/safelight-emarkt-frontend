@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>    
+    <ion-title>Carrinho</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let item of items">
+      <ion-thumbnail item-start>
+        <img [src]="item.livro.imageUrl || 'assets/imgs/prod.jpg'">
+      </ion-thumbnail>
+      <h2>{{item.livro.nome}}</h2>
+      <ion-icon class="nolinebreak" name="remove-circle" color="primary"  (click)="decreaseQuantity(item.livro)"></ion-icon>
+      <p class="nolinebreak">{{item.quantidade}}</p>
+      <ion-icon name="add-circle" color="primary" (click)="increaseQuantity(item.livro)"></ion-icon>
+      <ion-icon name="trash" item-end  color="danger" (click)="removeItem(item.livro)"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="total() > 0">
+      <h1>Total</h1>
+      <h1 item-end>R$ {{total()}}</h1>
+    </ion-item>
+    <ion-item *ngIf="total() <= 0">
+      <h1>Seu carrinho está vazio</h1>
+    </ion-item>
+  </ion-list> 
+  <button ion-button block (click)="goOn()">Continuar retirando</button>   
+  <button *ngIf="total() > 0" ion-button color="secondary" block (click)="checkout()">Finalizar retirada</button>   
+</ion-content>

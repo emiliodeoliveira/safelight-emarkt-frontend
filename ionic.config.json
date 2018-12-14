@@ -1,0 +1,7 @@
+{
+  "name": "SafelightEmarkt",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
